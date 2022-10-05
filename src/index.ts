@@ -34,7 +34,7 @@ app.post('/new', async (req: Request, res: Response) => {
     const result = await AppDataSource.getRepository(Game).save(game);
 
     await Promise.all(
-      req.body.questions.map(async (question) => {
+      req.body.questions.map(async (question: Question) => {
         const q = await AppDataSource.getRepository(Question).create({
           content: question.content,
           options: JSON.stringify(question.options),
