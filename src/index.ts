@@ -63,7 +63,7 @@ app.get('/game/:gameId', async (req: Request, res: Response) => {
 
     return res.send({
       title: game.title,
-      question: game.questions.map((question) => {
+      questions: game.questions.map((question) => {
         return {
           id: question.id,
           content: question.content,
