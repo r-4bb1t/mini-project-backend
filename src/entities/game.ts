@@ -26,6 +26,9 @@ export class Question {
   @Column('int')
   count!: number;
 
+  @Column('int')
+  index!: number;
+
   @ManyToOne(() => Game, (game) => game.questions)
   game: Game;
 }

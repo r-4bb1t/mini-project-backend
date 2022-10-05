@@ -39,6 +39,7 @@ app.post('/new', async (req: Request, res: Response) => {
           content: question.content,
           options: JSON.stringify(question.options),
           game: result,
+          index: question.index,
           count: 0,
         });
         await AppDataSource.getRepository(Question).save(q);
@@ -66,6 +67,7 @@ app.get('/game/:gameId', async (req: Request, res: Response) => {
       questions: game.questions.map((question) => {
         return {
           id: question.id,
+          index: question.index,
           content: question.content,
           options: JSON.parse(question.options),
         };
