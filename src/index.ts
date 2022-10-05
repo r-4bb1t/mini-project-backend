@@ -59,6 +59,8 @@ app.get('/game/:gameId', async (req: Request, res: Response) => {
       .leftJoinAndSelect('game.questions', 'questions')
       .getOne();
 
+    if (!game) return res.send(404);
+
     return res.send({
       title: game.title,
       question: game.questions.map((question) => {
@@ -81,6 +83,8 @@ app.get('/game/:gameId/:index', async (req: Request, res: Response) => {
       .where('game.id == :id', { id: req.params.gameId })
       .leftJoinAndSelect('game.questions', 'questions')
       .getOne();
+
+    if (!game) return res.send(404);
 
     const questionId = game.questions[parseInt(req.params.index)].id;
     const count = game.questions[parseInt(req.params.index)].count;
